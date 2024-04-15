@@ -1,0 +1,21 @@
+version: 2.1
+#Define the jobs we want to run for this projectjobs:
+jobs:
+ build:
+   docker:
+     - image: python
+   steps:
+     - checkout
+     - run: python Main1.py
+ test:
+   docker:
+     - image: python
+   steps:
+     - checkout
+     - run: python Test.py
+# Orchestrate our job run sequence
+workflows:
+ build_and_test:
+   jobs:
+     - build
+     - test
